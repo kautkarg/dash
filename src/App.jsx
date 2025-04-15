@@ -17,7 +17,7 @@ function App() {
   const fetchUsers = async (page, status) => {
     if (usersCache[status]?.[page]) return;
     try {
-      const response = await fetch(`${apiUrl}/user/?page=${page}&limit=${pageSize}&status=${status}`);
+      const response = await fetch("https://univens-backend-1.onrender.com/user/?page=${page}&limit=${pageSize}&status=${status}");
       const data = await response.json();
       if (!usersCache[status]) usersCache[status] = {};
       usersCache[status][page] = data.users;
@@ -42,7 +42,7 @@ function App() {
   };
 
   const download = async (ids) => {
-    const response = await fetch(`${apiUrl}/user/download-selected-users`, {
+    const response = await fetch("https://univens-backend-1.onrender.com/user/download-selected-users", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userIds: ids })
